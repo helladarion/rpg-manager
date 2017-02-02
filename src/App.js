@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './assets/images/sword_shield.png';
 import './App.css';
 
 /* Services */
@@ -21,16 +21,15 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h1 className="text-primary">RPG Manager</h1>
         </div>
-        <div>
-        <Link to={'/dungeon_master'}>
-          <Button
-            label='Dungeon Master'
-            onClick={() => {}}
-          />
-        </Link>
-
+        <div className="App-buttons">
+          <Link to={'/dungeon_master'}>
+            <Button
+              label='Dungeon Master'
+              onClick={() => {}}
+            />
+          </Link>
           <Button
             label='Player'
             onClick={() => {}}

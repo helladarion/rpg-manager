@@ -4,7 +4,7 @@ class DeleteButton extends Component {
   render() {
     return (
       <button onClick={this.props.onClick}>
-        x
+        <span className='fa fa-times' />
       </button>
     );
   }

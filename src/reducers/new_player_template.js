@@ -5,7 +5,8 @@ const NEW_PLAYER_DEFAULTS = Immutable.fromJS({
   displayMP: true,
   displayItems: true,
   displayLog: true,
-  gameRaces: []
+  gameRaces: [],
+  playerAttributes: []
 });
 
 const newPlayerTemplate = (state = NEW_PLAYER_DEFAULTS, action) => {

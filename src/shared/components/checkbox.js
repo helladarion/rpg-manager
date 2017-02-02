@@ -1,5 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 
+const styles = {
+  container: {
+    marginBottom: 10
+  },
+  label: {
+    fontSize: 18
+  }
+};
+
 class Checkbox extends Component {
   handleChange = (event) => {
 
@@ -8,8 +17,8 @@ class Checkbox extends Component {
 
   render() {
     return (
-      <div>
-        <label>
+      <div style={styles.container}>
+        <label style={styles.label}>
           <input
             type='checkbox'
             name={this.props.name}

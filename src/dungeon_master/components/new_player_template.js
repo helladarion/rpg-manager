@@ -2,12 +2,22 @@ import React, { Component, PropTypes } from 'react';
 
 import { Button, Checkbox, TextArea, DynamicList } from '../../shared/components';
 
+const styles = {
+  container: {
+    padding: 15
+  }
+};
+
 class NewPlayerTemplate extends Component {
+  handleCreateTemplate = () => {
+
+  }
+
   render() {
     const { newPlayerTemplate, onUpdate } = this.props;
-    console.log(newPlayerTemplate.toJS())
     return (
-      <div>
+      <div style={styles.container}>
+        <h2>New Player Template</h2>
         <Checkbox
           label='Display HP Bar'
           name='displayHP'
@@ -43,6 +53,16 @@ class NewPlayerTemplate extends Component {
           type='Race'
           dynamicList={newPlayerTemplate.get('gameRaces')}
           onUpdate={onUpdate}
+        />
+        <DynamicList
+          name='playerAttributes'
+          type='Attributes'
+          dynamicList={newPlayerTemplate.get('playerAttributes')}
+          onUpdate={onUpdate}
+        />
+        <Button
+          label='Create New Template'
+          onClick={this.handleCreateTemplate}
         />
       </div>
     );

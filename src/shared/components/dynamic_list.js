@@ -1,6 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, TextInput, DeleteButton } from './';
 
+
+const styles = {
+  addItemWrapper: {
+    flexDirection: 'row',
+    display: 'flex'
+  },
+  textInputWrapper: {
+    flex: 1
+  },
+  buttonWrapper: {
+    width: 50
+  }
+};
+
 class DynamicList extends Component {
   constructor(props) {
     super(props);
@@ -29,15 +43,21 @@ class DynamicList extends Component {
     return (
       <div>
         <h3>{type}</h3>
-        <TextInput
-          name='dynamicValue'
-          key={this.state.dynamicInputKey}
-          onBlur={this.handleDynamicInputBlur}
-        />
-        <Button
-          label={`Add New ${type}`}
-          onClick={this.handleAdd}
-        />
+        <div style={styles.addItemWrapper}>
+          <div style={styles.textInputWrapper}>
+            <TextInput
+              name='dynamicValue'
+              key={this.state.dynamicInputKey}
+              onBlur={this.handleDynamicInputBlur}
+            />
+          </div>
+          <div style={styles.buttonWrapper}>
+            <Button
+              label='+'
+              onClick={this.handleAdd}
+            />
+          </div>
+        </div>
         <ul>
           {dynamicList.map((item, index) => {
             return (
