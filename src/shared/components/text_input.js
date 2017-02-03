@@ -9,7 +9,6 @@ class TextInput extends Component {
   render() {
     return (
       <TextField
-        {...this.props}
         hintText={this.props.placeholder}
         floatingLabelText={this.props.label}
         onBlur={this.handleBlur}

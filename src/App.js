@@ -11,7 +11,9 @@ import reducers from './reducers';
 
 /* Components */
 import DungeonMasterIndex from './dungeon_master/components/dungeon_master_index';
+import PlayerIndex from './player/components/player_index'
 import NewPlayerTemplateContainer from './dungeon_master/containers/new_player_template_container';
+import NewCharacterContainer from './player/containers/new_character_container';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const store = createStore(reducers);
@@ -36,12 +38,14 @@ class App extends Component {
             </Link>
           </div>
           <div>
-            <RaisedButton
-              label='Player'
-              primary
-              fullWidth
-              onClick={() => {}}
-            />
+            <Link to={'/player'}>
+              <RaisedButton
+                label='Player'
+                primary
+                fullWidth
+                onClick={() => {}}
+              />
+            </Link>
           </div>
         </div>
       </div>
@@ -66,6 +70,8 @@ class Routes extends Component {
             <Route path="/" component={App} />
             <Route path="/dungeon_master" component={DungeonMasterIndex}/>
             <Route path="/dungeon_master/new_player_template" component={NewPlayerTemplateContainer}/>
+            <Route path="/player" component={PlayerIndex}/>
+            <Route path="/player/new_character" component={NewCharacterContainer}/>
             <Route path="*" component={NotFound}/>
           </Router>
         </Provider>
