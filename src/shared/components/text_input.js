@@ -1,14 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
-const styles = {
-  input: {
-    width: '100%',
-    fontSize: 20,
-    padding: `${7}px ${10}px ${6}px`,
-    marginBottom: 10,
-    border: `1px solid #e5e5e5`
-  }
-};
+import TextField from 'material-ui/TextField';
 
 class TextInput extends Component {
   handleBlur = (event) => {
@@ -17,19 +8,20 @@ class TextInput extends Component {
 
   render() {
     return (
-      <div>
-        <input
-          style={styles.input}
-          type='text'
-          placeholder={this.props.placeholder}
-          onBlur={this.handleBlur}
-        />
-      </div>
+      <TextField
+        {...this.props}
+        hintText={this.props.placeholder}
+        floatingLabelText={this.props.label}
+        onBlur={this.handleBlur}
+        defaultValue={this.props.value}
+        fullWidth
+      />
     );
   }
 }
 
 TextInput.propTypes = {
+  label: PropTypes.string,
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   value: PropTypes.string,

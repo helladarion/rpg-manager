@@ -1,17 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, TextInput, DeleteButton } from './';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import { List, ListItem } from 'material-ui/List';
+import ChevronRightIcon from 'material-ui/svg-icons/navigation/chevron-right';
+import DeleteIcon from 'material-ui/svg-icons/content/remove-circle-outline';
 
 
 const styles = {
   addItemWrapper: {
     flexDirection: 'row',
-    display: 'flex'
+    display: 'flex',
+    verticalAlign: 'bottom'
+
   },
   textInputWrapper: {
-    flex: 1
+    flex: 1,
+    verticalAlign: 'bottom'
+
   },
   buttonWrapper: {
-    width: 50
+    width: 80,
+    verticalAlign: 'bottom'
   }
 };
 
@@ -42,34 +52,32 @@ class DynamicList extends Component {
     const { dynamicList, type } = this.props;
     return (
       <div>
-        <h3>{type}</h3>
         <div style={styles.addItemWrapper}>
           <div style={styles.textInputWrapper}>
             <TextInput
+              label={type}
               name='dynamicValue'
               key={this.state.dynamicInputKey}
               onBlur={this.handleDynamicInputBlur}
             />
           </div>
           <div style={styles.buttonWrapper}>
-            <Button
-              label='+'
-              onClick={this.handleAdd}
-            />
+            <FlatButton label='Add' onClick={this.handleAdd} primary />
           </div>
         </div>
-        <ul>
+        <List>
           {dynamicList.map((item, index) => {
             return (
-              <li key={index}>
-                {item}
-                <DeleteButton
-                  onClick={this.handleDelete(index)}
-                />
-              </li>
+              <ListItem
+                key={index}
+                primaryText={item}
+                leftIcon={<ChevronRightIcon />}
+                rightIcon={<DeleteIcon />}
+                onClick={this.handleDelete(index)}
+              />
             );
           })}
-        </ul>
+        </List>
       </div>
     );
   }

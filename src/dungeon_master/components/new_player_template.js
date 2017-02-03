@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 
-import { Button, Checkbox, TextArea, DynamicList } from '../../shared/components';
+import { TextArea, DynamicList, Checkbox } from '../../shared/components';
+import { Link } from 'react-router';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
   container: {
@@ -9,62 +12,62 @@ const styles = {
 };
 
 class NewPlayerTemplate extends Component {
-  handleCreateTemplate = () => {
-
-  }
-
   render() {
     const { newPlayerTemplate, onUpdate } = this.props;
     return (
-      <div style={styles.container}>
-        <h2>New Player Template</h2>
-        <Checkbox
-          label='Display HP Bar'
-          name='displayHP'
-          value={newPlayerTemplate.get('displayHP')}
-          onChange={onUpdate}
-        />
-        <Checkbox
-          label='Display MP Bar'
-          name='displayMP'
-          value={newPlayerTemplate.get('displayMP')}
-          onChange={onUpdate}
-        />
-        <Checkbox
-          label='Display Items Stash'
-          name='displayItems'
-          value={newPlayerTemplate.get('displayItems')}
-          onChange={onUpdate}
-        />
-        <Checkbox
-          label='Display Adventure Log'
-          name='displayLog'
-          value={newPlayerTemplate.get('displayLog')}
-          onChange={onUpdate}
-        />
-        <TextArea
-          name='instructions'
-          value={newPlayerTemplate.get('instructions')}
-          placeholder='Instructions of the Game'
-          onBlur={onUpdate}
-        />
-        <DynamicList
-          name='gameRaces'
-          type='Race'
-          dynamicList={newPlayerTemplate.get('gameRaces')}
-          onUpdate={onUpdate}
-        />
-        <DynamicList
-          name='playerAttributes'
-          type='Attributes'
-          dynamicList={newPlayerTemplate.get('playerAttributes')}
-          onUpdate={onUpdate}
-        />
-        <Button
-          label='Create New Template'
-          onClick={this.handleCreateTemplate}
-        />
-      </div>
+      <Card>
+        <CardTitle title='New Player Template' />
+        <CardText>
+          <Checkbox
+            label='Display HP Bar'
+            name='displayHP'
+            checked={newPlayerTemplate.get('displayHP')}
+            onChange={onUpdate}
+          />
+          <Checkbox
+            label='Display MP Bar'
+            name='displayMP'
+            checked={newPlayerTemplate.get('displayMP')}
+            onChange={onUpdate}
+          />
+          <Checkbox
+            label='Display Items Stash'
+            name='displayItems'
+            checked={newPlayerTemplate.get('displayItems')}
+            onChange={onUpdate}
+          />
+          <Checkbox
+            label='Display Adventure Log'
+            name='displayLog'
+            checked={newPlayerTemplate.get('displayLog')}
+            onChange={onUpdate}
+          />
+          <TextArea
+            label='Instructions'
+            name='instructions'
+            value={newPlayerTemplate.get('instructions')}
+            placeholder='Instructions of the Game'
+            onBlur={onUpdate}
+          />
+          <DynamicList
+            name='gameRaces'
+            type='Race'
+            dynamicList={newPlayerTemplate.get('gameRaces')}
+            onUpdate={onUpdate}
+          />
+          <DynamicList
+            name='playerAttributes'
+            type='Attributes'
+            dynamicList={newPlayerTemplate.get('playerAttributes')}
+            onUpdate={onUpdate}
+          />
+        </CardText>
+        <CardActions>
+          <Link to='/dungeon_master'>
+            <FlatButton label='Go Back'  />
+          </Link>
+        </CardActions>
+      </Card>
     );
   }
 }

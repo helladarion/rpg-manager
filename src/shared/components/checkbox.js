@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import MuiCheckbox from 'material-ui/Checkbox';
 
 const styles = {
   container: {
@@ -10,24 +11,16 @@ const styles = {
 };
 
 class Checkbox extends Component {
-  handleChange = (event) => {
-
-    this.props.onChange({ [this.props.name]: event.target.checked });
+  handleChange = (event, isInputChecked) => {
+    this.props.onChange({ [this.props.name]: isInputChecked });
   }
 
   render() {
     return (
-      <div style={styles.container}>
-        <label style={styles.label}>
-          <input
-            type='checkbox'
-            name={this.props.name}
-            checked={this.props.value}
-            onChange={this.handleChange}
-          />
-          {this.props.label}
-        </label>
-      </div>
+      <MuiCheckbox
+        {...this.props}
+        onCheck={this.handleChange}
+      />
     );
   }
 }

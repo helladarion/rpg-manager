@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './assets/images/sword_shield.png';
 import './App.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 /* Services */
 import { Provider } from 'react-redux';
@@ -9,9 +10,9 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import reducers from './reducers';
 
 /* Components */
-import { Button } from './shared/components';
 import DungeonMasterIndex from './dungeon_master/components/dungeon_master_index';
 import NewPlayerTemplateContainer from './dungeon_master/containers/new_player_template_container';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const store = createStore(reducers);
 
@@ -24,16 +25,24 @@ class App extends Component {
           <h1 className="text-primary">RPG Manager</h1>
         </div>
         <div className="App-buttons">
-          <Link to={'/dungeon_master'}>
-            <Button
-              label='Dungeon Master'
+          <div>
+            <Link to={'/dungeon_master'}>
+              <RaisedButton
+                label='Dungeon Master'
+                primary
+                fullWidth
+                onClick={() => {}}
+              />
+            </Link>
+          </div>
+          <div>
+            <RaisedButton
+              label='Player'
+              primary
+              fullWidth
               onClick={() => {}}
             />
-          </Link>
-          <Button
-            label='Player'
-            onClick={() => {}}
-          />
+          </div>
         </div>
       </div>
     );
@@ -51,14 +60,16 @@ class NotFound extends Component {
 class Routes extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router history={browserHistory}>
-          <Route path="/" component={App} />
-          <Route path="/dungeon_master" component={DungeonMasterIndex}/>
-          <Route path="/dungeon_master/new_player_template" component={NewPlayerTemplateContainer}/>
-          <Route path="*" component={NotFound}/>
-        </Router>
-      </Provider>
+      <MuiThemeProvider>
+        <Provider store={store}>
+          <Router history={browserHistory}>
+            <Route path="/" component={App} />
+            <Route path="/dungeon_master" component={DungeonMasterIndex}/>
+            <Route path="/dungeon_master/new_player_template" component={NewPlayerTemplateContainer}/>
+            <Route path="*" component={NotFound}/>
+          </Router>
+        </Provider>
+      </MuiThemeProvider>
     );
   }
 }
